@@ -14,8 +14,6 @@
 
 #define advanced true
 
-#define CHARS_PER_LINE 7
-
 typedef char *string;
 
 typedef struct {
@@ -38,32 +36,43 @@ segment_def segments[] = {
         {'9', "1111011", "11000111000011"},
 
         // Letters
-        {'A', "1111110", "11111111111111"},
+        {'A', "1111110", "11000111100010"},
         {'B', "0101111", "11111111111111"},
         {'C', "1100101", "11111111111111"},
         {'D', "0011111", "11111111111111"},
         {'E', "1101101", "11111111111111"},
         {'F', "1101100", "11111111111111"},
+        {'G', "0000000", "11111111111111"},
+        {'H', "0000000", "11111111111111"},
+        {'I', "0000000", "11111111111111"},
+        {'J', "0000000", "11111111111111"},
+        {'K', "0000000", "11111111111111"},
+        {'L', "0000000", "11111111111111"},
+        {'M', "0000000", "11111111111111"},
+        {'N', "0000000", "01100100100110"},
+        {'O', "0000000", "11000100100011"},
+        {'P', "0000000", "11000111100000"},
+        {'Q', "0000000", "11000100100111"},
+        {'R', "0000000", "11000111100100"},
+        {'S', "0000000", "11000011000011"},
+        {'T', "0000000", "10010000001000"},
+        {'U', "0000000", "01000100100011"},
+        {'V', "0000000", "01001000110000"},
+        {'W', "0000000", "01000100110110"},
+        {'X', "0000000", "00101000010100"},
+        {'Y', "0000000", "00101000001000"},
+        {'Z', "0000000", "10001000010001"}
 };
-
-//" --------- "
-//"| \  |  / |"
-//"|  \ | /  |"
-//" ---- ---- "
-//"|  / | \  |"
-//"| /  |  \ |"
-//" --------- "
 
 #define NUM_OF_SEGMENTS (sizeof(segments) / sizeof(segment_def))
 #define NUM_OF_SEG_LINES 7
 
-void process_string(string source);
-void print_line(string source, int group, int line);
+void process_string(string source, int chars_per_line);
+void print_line(string source, int group, int line, int chars_per_line);
 
 boolean get_segment(segment_def *segment, char character);
 boolean is_segment_enabled(segment_def segment, int bit);
 
-void print_character(char character);
 void print_character_line(char character, int line);
 
 #endif

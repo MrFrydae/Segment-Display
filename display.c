@@ -1,40 +1,40 @@
 #include "display.h"
 
 int main(int argc, string *argv) {
-    if (argc < 2) {
+    if (argc < 3) {
         exit(EXIT_FAILURE);
     }
 
-    process_string(argv[1]);
+    int chars_per_line = atoi(argv[1]);
+
+    process_string(argv[2], chars_per_line);
 
     return 0;
 }
 
-void process_string(string source) {
+void process_string(string source, int chars_per_line) {
     int groups;
-    if (strlen(source) <= CHARS_PER_LINE) {
+    if (strlen(source) <= chars_per_line) {
         groups = 1;
     } else {
-        groups = ceil(strlen(source) / (CHARS_PER_LINE * 1.0));
+        groups = ceil(strlen(source) / (chars_per_line * 1.0));
     }
-
-    printf("groups: %d\n", groups);
 
     for (int group = 1; group <= groups; group++) {
         for (int line = 1; line <= NUM_OF_SEG_LINES; line++) {
-            print_line(source, group, line);
+            print_line(source, group, line, chars_per_line);
         }
     }
 }
 
-void print_line(string source, int group, int line) {
+void print_line(string source, int group, int line, int chars_per_line) {
     string clone = malloc(sizeof(source));
     strcpy(clone, source);
 
-    int increment = (group - 1) * CHARS_PER_LINE;
+    int increment = (group - 1) * chars_per_line;
     clone += increment;
 
-    for (int i = 0; i < CHARS_PER_LINE; i++) {
+    for (int i = 0; i < chars_per_line; i++) {
         print_character_line(clone[i], line);
     }
 
